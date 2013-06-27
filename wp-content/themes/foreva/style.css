@@ -195,6 +195,9 @@ input {
 	width:300px;
 	margin-top:25px;
 }
+#sidebar .widget:first-child h3{
+ background:url('images/icon-letter.png') 60% 2px  no-repeat;
+}
 .widget {
 	margin-bottom:30px;
 	float:left;
@@ -383,17 +386,16 @@ input {
 }
 .view-more-post,
 .view-more-post:hover {
-	position:absolute;
-	right:0px;
-	bottom:-30px;
-	background:#f6d1dc url('images/arrow-right.png') 85% center no-repeat;
-	font-weight:bold;
-	font-size:14px;
-	color:#c7395d;
-	padding-right:30px;
+ float: none;
+ background: #F6D1DC;
+ font-weight: bold;
+ font-size: 11px;
+ color: #C7395D;
+ padding: 0px 5px;
+ margin-left: 5px;
 }
 .view-more-post:hover{
-	background:#e9c4cf url('images/arrow-right.png') 85% center no-repeat;
+ background:#e9c4cf;
 }
 .atclear {
 	padding-bottom:10px;
