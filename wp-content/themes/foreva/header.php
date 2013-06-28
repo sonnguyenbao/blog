@@ -51,13 +51,9 @@
             </div>
             <!-- /header-container -->
             <!--Banner-->
-<!--            <div id="bigbanner">
-                <div class="col-full">
-                    <div class="block-banner">
-                        hinh anh trong nay se co thiet ke sau
-                    </div>
-                </div>
-            </div>-->
+            <div id="bigbanner">
+                <?php dynamic_sidebar( 'banner' ); ?>
+            </div>
             <!--/Banner-->
 
             <!-- main-container -->

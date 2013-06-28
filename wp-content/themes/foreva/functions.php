@@ -1,29 +1,41 @@
 <?php
 // This theme uses wp_nav_menu() in one location.
-register_nav_menu( 'primary', __( 'Primary Menu', 'foreva' ) );
-if ( function_exists('register_sidebar') )  
-    register_sidebar(array(  
-    'name' => 'sidebar',  
-    'before_widget' => '<div class="widget">',  
-    'after_widget' => '</div>',  
-    'before_title' => '<h3>',  
-    'after_title' => '</h3>',  
-));  
-add_theme_support( 'post-thumbnails' );
+register_nav_menu('primary', __('Primary Menu', 'foreva'));
+if (function_exists('register_sidebar')) {
+    register_sidebar(array(
+        'name' => 'sidebar',
+        'id' => 'sidebar',
+        'before_widget' => '<div class="widget">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3>',
+        'after_title' => '</h3>',
+    ));
+    register_sidebar(array(
+        'name' => 'banner',
+        'id' => 'banner',
+        'before_widget' => '<div class="col-full">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3>',
+        'after_title' => '</h3>',
+    ));
+}
+add_theme_support('post-thumbnails');
 
-add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
-function special_nav_class($classes, $item){
-     if( in_array('current-menu-item', $classes) ){
-             $classes[] = 'active ';
-     }
-     return $classes;
+add_filter('nav_menu_css_class', 'special_nav_class', 10, 2);
+
+function special_nav_class($classes, $item) {
+    if (in_array('current-menu-item', $classes)) {
+        $classes[] = 'active ';
+    }
+    return $classes;
 }
 
 // Replaces the excerpt "more" text by a link
 function new_excerpt_more($more) {
-       global $post;
-	return '<a class="view-more-post btn" href="'. get_permalink($post->ID) . '"> Xem thêm</a>';
+    global $post;
+    return '<a class="view-more-post btn" href="' . get_permalink($post->ID) . '"> Xem thêm</a>';
 }
+
 add_filter('excerpt_more', 'new_excerpt_more');
 
 //Count posts in category
@@ -42,22 +54,19 @@ function count_post_category($input = '') {
 }
 
 //Show list tags by create html
-function show_list_tags()
-{
+function show_list_tags() {
     global $wpdb;
-    $font= array("font-18","font-22","font-30");
-    $color= array("","gray","gray-1");
+    $font = array("font-18", "font-22", "font-30");
+    $color = array("", "gray", "gray-1");
     $sql = "SELECT a.* 
             FROM $wpdb->terms as a
             LEFT JOIN $wpdb->term_taxonomy AS b ON a.term_id=b.term_id
             WHERE b.taxonomy='post_tag'";
-    $tags= $wpdb->get_results($sql);
+    $tags = $wpdb->get_results($sql);
     echo '<div class="tags">';
-    if(count($tags)>0)
-    {
-        foreach ($tags as $tag)
-        {
-            echo '<a class="'.$font[array_rand($font)]." ".$color[array_rand($color)].'" href="'.get_tag_link($tag->term_id).'">'.$tag->name.'</a>';
+    if (count($tags) > 0) {
+        foreach ($tags as $tag) {
+            echo '<a class="' . $font[array_rand($font)] . " " . $color[array_rand($color)] . '" href="' . get_tag_link($tag->term_id) . '">' . $tag->name . '</a>';
         }
     }
     else
@@ -97,14 +106,12 @@ function get_image_from_attachments($args = array()) {
     }
 }
 
-function get_image_from_post_thumbnail($args = array())
-{
-	if (function_exists('has_post_thumbnail')) {
-		if (has_post_thumbnail( $args['post_id']))
-		$image = wp_get_attachment_image_src( get_post_thumbnail_id( $args['post_id'] ), 'single-post-thumbnail' );
-	}
- 	return $image[0];
-
+function get_image_from_post_thumbnail($args = array()) {
+    if (function_exists('has_post_thumbnail')) {
+        if (has_post_thumbnail($args['post_id']))
+            $image = wp_get_attachment_image_src(get_post_thumbnail_id($args['post_id']), 'single-post-thumbnail');
+    }
+    return $image[0];
 }
 
 function tf_get_image($args = array()) {
@@ -125,52 +132,49 @@ function tf_get_image($args = array()) {
 }
 
 function get_other_posts() {
-    
+
     global $post;
     $categories = get_the_category();
-    $currentId= $post->ID;
-    foreach($categories as $cate)
-        $idCates[]= $cate->cat_ID;
-    
-    $posts= get_posts( array( 'category__and' => $idCates, 'posts_per_page' => 3, 'orderby' => 'id', 'order' => 'DESC' ) );
-    if(count($posts))
-    {
+    $currentId = $post->ID;
+    foreach ($categories as $cate)
+        $idCates[] = $cate->cat_ID;
+
+    $posts = get_posts(array('category__and' => $idCates, 'posts_per_page' => 3, 'orderby' => 'id', 'order' => 'DESC'));
+    if (count($posts)) {
         echo '<br/><hr class="mg-bottom-20"/><h4>You may also like these:</h4>';
         echo "<ul>";
-        foreach ($posts as $post)
-        {
-            if($currentId!=$post->ID)
-            echo '<li><a href="' . get_permalink() . '" title="' . the_title("", "", false) . '">' . the_title("", "", false) . '</a></li>';
+        foreach ($posts as $post) {
+            if ($currentId != $post->ID)
+                echo '<li><a href="' . get_permalink() . '" title="' . the_title("", "", false) . '">' . the_title("", "", false) . '</a></li>';
         }
         echo "</ul>";
-         echo "<br/><hr/>";
+        echo "<br/><hr/>";
     }
 }
 
 function foreva_comment($comment, $args, $depth) {
     $GLOBALS['comment'] = $comment;
-?>
+    ?>
     <li>
-            <a href="#"><?php comment_author(); ?>:</a>
-            <span class="data-day">(<?php echo get_comment_date('j F Y');?>)</span>
-            <?php comment_text(); ?>
+        <a href="#"><?php comment_author(); ?>:</a>
+        <span class="data-day">(<?php echo get_comment_date('j F Y'); ?>)</span>
+    <?php comment_text(); ?>
     </li>
-<?php 
+    <?php
 }
 
-function get_form_comment()
-{
+function get_form_comment() {
     $args_form_comment = array(
         'id_form' => 'commentform',
         'id_submit' => 'submit',
-        'title_reply'=>'',
+        'title_reply' => '',
         'label_submit' => __('GỬI Ý KIẾN'),
         'comment_field' => '<textarea id="comment" name="comment" aria-required="true" placeholder="NỘI DUNG"></textarea>',
         'comment_notes_after' => '<span class="note">16/500 ký tự</span>',
         'comment_notes_before' => '',
-        'fields'=>apply_filters( 'comment_form_default_fields', array(
-        'author'=>'',
-        'email'=>''))
+        'fields' => apply_filters('comment_form_default_fields', array(
+            'author' => '',
+            'email' => ''))
     );
     return $args_form_comment;
 }
