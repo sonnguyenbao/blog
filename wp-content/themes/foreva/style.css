@@ -316,11 +316,15 @@ input {
 /*************/
 /*****main*****/
 /*************/
-#main {
-	float:left;
-	width:620px;
-	padding-right:60px;
-	margin-top:20px;
+#main{
+ float:left;
+ width:100%;
+}
+#main.col-left {
+ float:left;
+ width:620px;
+ padding-right:60px;
+ margin-top:20px;
 }
 .post {
 	width:100%;
@@ -513,4 +517,35 @@ input {
 }
 /*************/
 /*****end footer*****/
+/*************/
+
+/*************/
+/*****thumbnails*****/
+/*************/
+.thumbnails {
+ float:left;
+}
+.thumbnails li {
+ float:left;
+ margin:0px 8px 10px 2px;
+}
+.thumbnails li.last {
+ margin-right:0px;
+}
+.thumbnails li a{
+ padding:2px;
+ background:#fff;
+ border:1px solid #999;
+ float:left;
+}
+.thumbnails li img {
+ float:left;
+}
+.title-line {
+ border-bottom:1px dashed #C6C6C6;
+ padding:40px 0px 20px 0px;
+ margin-bottom:20px;
+}
+/*************/
+/*****end thumbnails*****/
 /*************/
