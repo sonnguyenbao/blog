@@ -358,6 +358,10 @@ input {
 	margin-bottom:10px;
 	line-height:1.1em;
 }
+.post-title a
+{
+    color: #bb0037;
+}
 .date {
 	background:#bb0037;
 	border-radius:6px;
