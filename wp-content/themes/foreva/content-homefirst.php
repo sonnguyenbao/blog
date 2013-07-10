@@ -28,6 +28,8 @@
     <?php endif; ?> 
 </div>
 <!-- /entry -->
+<?php if(count_tags_post(get_the_ID())):?>
 <div class="tag"><img src="<?php echo get_template_directory_uri(); ?>/images/icon-tag.png" alt=""><?php the_tags();?></div>
+<?php endif;?>
 <a class="btn-comment" href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/icon-comment.png" alt=""><?php echo wp_count_comments(get_the_ID())->total_comments;?> Bình luận</a>
 <div class="clear"></div>

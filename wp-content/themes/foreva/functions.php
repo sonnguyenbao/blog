@@ -37,7 +37,13 @@ function new_excerpt_more($more) {
 }
 
 add_filter('excerpt_more', 'new_excerpt_more');
-
+//Count tags in post
+function count_tags_post($id)
+{
+    global $wpdb;
+    $SQL = "SELECT count($wpdb->term_relationships.object_id) FROM $wpdb->term_relationships WHERE $wpdb->term_relationships.object_id=$id";
+    return $wpdb->get_var($SQL);
+}
 //Count posts in category
 function count_post_category($input = '') {
     global $wpdb;
@@ -139,14 +145,26 @@ function get_other_posts() {
     foreach ($categories as $cate)
         $idCates[] = $cate->cat_ID;
 
-    $posts = get_posts(array('category__and' => $idCates, 'posts_per_page' => 3, 'orderby' => 'id', 'order' => 'DESC'));
+    $posts = get_posts(array('category__and' => $idCates, 'numberposts' => 3, 'orderby' => 'id', 'order' => 'DESC'));
+    $posts2 = get_posts(array('category__and' => $idCates, 'numberposts' => 3, 'orderby' => 'id', 'order' => 'ASC'));
     if (count($posts)) {
         echo '<br/><hr class="mg-bottom-20"/><h4>Đọc thêm các tip khác:</h4>';
         echo "<ul>";
-        foreach ($posts as $post) {
+        $i=0;
+        $temp= array();
+        $reverse= array_reverse($posts2);
+        for($i=0;$i<count($posts);$i++){
+            $post= $posts[$i];
+            if($post->ID!=$reverse[$i]->ID)
+                $temp[]= $reverse[$i];
             if ($currentId != $post->ID)
                 echo '<li><a href="' . get_permalink() . '" title="' . the_title("", "", false) . '">' . the_title("", "", false) . '</a></li>';
         }
+        if(count($temp))
+            foreach($temp as $post){
+                if ($currentId != $post->ID)
+                    echo '<li><a href="' . get_permalink() . '" title="' . the_title("", "", false) . '">' . the_title("", "", false) . '</a></li>';
+            }
         echo "</ul>";
         echo "<br/><hr/>";
     }
