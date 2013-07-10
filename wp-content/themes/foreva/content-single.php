@@ -6,7 +6,7 @@
 <div class="post">
     <div class="date">
         <p class="day"><?php the_time('j') ?></p>
-        <p class="month"><?php the_time('F') ?></p>
+        <p class="month"><?php translate_month() ?></p>
         <p class="year"><?php the_time('Y') ?></p>
     </div>
     <h2 class="post-title"><?php the_title(); ?></h2>

@@ -1,18 +1,4 @@
-<?php
-/**
- * The template for displaying Archive pages.
- *
- * Used to display archive-type pages if nothing more specific matches a query.
- * For example, puts together date-based pages if no date.php file exists.
- *
- * Learn more: http://codex.wordpress.org/Template_Hierarchy
- *
- * @package WordPress
- * @subpackage Twenty_Eleven
- * @since Twenty Eleven 1.0
- */
-
-get_header(); ?>
+<?php get_header(); ?>
 <div id="main" class="col-left">
     <?php if ( have_posts() ) : ?> 
         <div class="post">
@@ -35,7 +21,5 @@ get_header(); ?>
     <p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
     <?php endif; // end have_posts() check ?>
 </div>
-		
-
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>
