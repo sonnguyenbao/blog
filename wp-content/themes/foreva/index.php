@@ -12,7 +12,7 @@
         ?>
                     <?php get_template_part( 'content', "homefirst" ); ?>
                     <?php if(count_post_category(1)>1):?>
-                    <h4>You may also like these:</h4>
+                    <h4>Đọc thêm các tip khác:</h4>
                     <ul>
                     <?php endif;?>    
                 <?php else:?>
@@ -38,7 +38,7 @@
         ?>
                     <?php get_template_part( 'content', "homefirst" ); ?>
                     <?php if(count_post_category(2)>1):?>
-                    <h4>You may also like these:</h4>
+                    <h4>Đọc thêm các tip khác:</h4>
                     <ul>
                     <?php endif;?>
                 <?php else:?>

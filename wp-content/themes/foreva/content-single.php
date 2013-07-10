@@ -24,10 +24,10 @@
     </div>
     <!-- /entry -->
 
-    <h4>Foreva</h4>
+    <h4>FOREVA</h4>
 
     <div class="tag"><img src="<?php echo get_template_directory_uri(); ?>/images/icon-tag.png" alt=""><?php the_tags(); ?></div>
-    <a class="btn-comment" href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/icon-comment.png" alt=""><?php echo wp_count_comments(get_the_ID())->total_comments;?> comments</a>
+    <a class="btn-comment" href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/icon-comment.png" alt=""><?php echo wp_count_comments(get_the_ID())->total_comments;?> Bình luận</a>
     <?php get_other_posts();?>
 
 </div>

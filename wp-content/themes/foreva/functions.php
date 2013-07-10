@@ -141,7 +141,7 @@ function get_other_posts() {
 
     $posts = get_posts(array('category__and' => $idCates, 'posts_per_page' => 3, 'orderby' => 'id', 'order' => 'DESC'));
     if (count($posts)) {
-        echo '<br/><hr class="mg-bottom-20"/><h4>You may also like these:</h4>';
+        echo '<br/><hr class="mg-bottom-20"/><h4>Đọc thêm các tip khác:</h4>';
         echo "<ul>";
         foreach ($posts as $post) {
             if ($currentId != $post->ID)
@@ -177,5 +177,63 @@ function get_form_comment() {
             'email' => ''))
     );
     return $args_form_comment;
+}
+
+function translate_month()
+{
+    switch (date('F'))
+    {
+        case "January":   
+            echo $month = "Tháng 1";    
+            break;
+        case "February":  
+            echo $month = "Tháng 2";   
+            break;
+        case "March":     
+            echo $month = "Tháng 3";     
+            break;
+        case "April":     
+            echo $month = "Tháng 4";     
+            break;
+        case "May":       
+            echo $month = "Tháng 5";       
+            break;
+        case "June":      
+            echo $month = "Tháng 6";      
+            break;
+        case "July":      
+            echo $month = "Tháng 7";      
+            break;
+        case "August":    
+            echo $month = "Tháng 8";    
+            break;
+        case "September": 
+            echo $month = "Tháng 9"; 
+            break;
+        case "October":   
+            echo $month = "Tháng 10";   
+            break;
+        case "November":  
+            echo $month = "Tháng 11"; 
+            break;
+        case "December":  
+            echo $month = "Tháng 12";  
+            break;
+    }
+}
+
+add_filter('get_archives_link', 'translate_archive_month');
+
+function translate_archive_month($list) {
+  $patterns = array(
+    '/January/', '/February/', '/March/', '/April/', '/May/', '/June/',
+    '/July/', '/August/', '/September/', '/October/',  '/November/', '/December/'
+  );
+  $replacements = array(
+    'Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 
+    'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'
+  );    
+  $list = preg_replace($patterns, $replacements, $list);
+return $list; 
 }
 ?>
