@@ -565,3 +565,50 @@ input {
 /*************/
 /*****end thumbnails*****/
 /*************/
+
+/*************/
+/*****footer*****/
+/*************/
+.footer{
+	border-top: 1px dashed #C6C6C6;
+	margin-top:100px;
+	padding:20px 0px;
+	color:#626262;
+}
+.blog-informational ul li{
+	float:left;
+	border-right:1px solid #999;
+	padding:0px 10px;
+}
+.blog-informational ul li:last-child {
+	border-right:none;
+}
+.blog-informational ul li a {
+	color:#626262;
+
+}
+/*************/
+/*****end footer*****/
+/*************/
+
+/*************/
+/*****link header*****/
+/*************/
+.quick-access {
+    min-height: 60px;
+}
+.quick-access .links {margin-left:50px;}
+.links li {
+    float: left;
+    font-weight: bold;
+    line-height: 1.3em;
+    margin-top: 27px;
+    width: 140px;
+}
+.links li img {
+    float: left;
+    margin-right: 10px;
+}
+/*************/
+/*****end link header*****/
+/*************/
