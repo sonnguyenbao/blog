@@ -22,15 +22,3 @@
     $('#submit').addClass("btn-print-gradient");
 </script>-->
 <?php //endif;?>
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/vn_VN/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<div class="testimonials">
-    <h4 style="padding-bottom: 10px;">Ý kiến bạn đọc:</h4>
-    <div class="fb-comments" data-href="<?php urlencode(the_permalink())?>" data-width="620" data-num-posts="10"></div>
-</div>

@@ -50,5 +50,16 @@
     <?php endif;?>
     <a class="btn-comment" href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/icon-comment.png" alt=""><?php echo wp_count_comments(get_the_ID())->total_comments;?> Bình luận</a>
     <?php get_other_posts();?>
-
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/vn_VN/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <div class="testimonials">
+        <h4 style="padding-bottom: 10px;">Ý kiến bạn đọc:</h4>
+        <div class="fb-comments" data-href="<?php urlencode(the_permalink())?>" data-width="620" data-num-posts="10"></div>
+    </div>
 </div>
