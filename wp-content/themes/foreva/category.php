@@ -17,7 +17,7 @@
                     <?php get_template_part( 'content', "homefirst" ); ?>
                     <?php if(count_post_category($cur_cat)>1):?>
                     <div class="clear"></div>
-                    <h4>You may also like these:</h4>
+                    <h4>Có thể bạn sẽ thích đọc tiếp:</h4>
                     <ul>
                     <?php endif;?>    
                 <?php else:?>

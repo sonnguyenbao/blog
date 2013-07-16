@@ -148,7 +148,7 @@ function get_other_posts() {
     $posts = get_posts(array('category__and' => $idCates, 'numberposts' => 3, 'orderby' => 'id', 'order' => 'DESC'));
     $posts2 = get_posts(array('category__and' => $idCates, 'numberposts' => 3, 'orderby' => 'id', 'order' => 'ASC'));
     if (count($posts)) {
-        echo '<br/><hr class="mg-bottom-20"/><h4>Đọc thêm các tip khác:</h4>';
+        echo '<br/><hr class="mg-bottom-20"/><h4>Có thể bạn sẽ thích đọc tiếp:</h4>';
         echo "<ul>";
         $i=0;
         $temp= array();
