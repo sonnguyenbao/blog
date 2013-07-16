@@ -41,7 +41,10 @@ add_filter('excerpt_more', 'new_excerpt_more');
 function count_tags_post($id)
 {
     global $wpdb;
-    $SQL = "SELECT count($wpdb->term_relationships.object_id) FROM $wpdb->term_relationships WHERE $wpdb->term_relationships.object_id=$id";
+    $SQL = "SELECT count(r.object_id) 
+            FROM $wpdb->term_relationships As r
+            LEFT JOIN $wpdb->term_taxonomy as t On t.term_taxonomy_id= r.term_taxonomy_id 
+            WHERE r.object_id=$id  And t.taxonomy='post_tag'";
     return $wpdb->get_var($SQL);
 }
 //Count posts in category

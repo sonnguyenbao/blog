@@ -12,7 +12,7 @@
     <h2 class="post-title"><?php the_title(); ?></h2>
     <div class="clear"></div>
     <div class="socialsute-wrappera">
-        <p style="color: #BB0037;">Bạn quan tâm bài này?</p>
+        <p style="color: #BB0037;">Bạn thích bài này?</p>
         <iframe class="facebook" src="//www.facebook.com/plugins/like.php?href=<?php urlencode(the_permalink())?>&amp;send=false&amp;layout=button_count&amp;width=80&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
         <div class="share-facebook">
             <a href="https://www.facebook.com/sharer/sharer.php?u=<?php urlencode(the_permalink())?>" target="_blank">
