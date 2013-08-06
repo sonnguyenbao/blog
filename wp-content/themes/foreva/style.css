@@ -351,35 +351,34 @@ input {
     margin-top:0px;
 }
 .post-title {
-    font-size:22px;
-    font-weight:bold;
-    font-family:arial;
-    color:#bb0037;
-    margin-bottom:10px;
-    line-height:1.1em;
+    color: #BB0037;
+    display: block;
+    float: right;
+    font-family: arial;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1.1em;
+    margin-bottom: 10px;
+    width: 516px;
 }
 .post-title a
 {
     color: #bb0037;
 }
 .date {
-/*    background:#bb0037;*/
-    border-radius:6px;
-    -o-border-radius:6px;
-    -moz-border-radius:6px;
-    -webkit-border-radius:6px;
-    float:left;
-    padding:3px 15px 0px 15px;
-    text-align:center;
-    margin-right:15px;
-    border: 1px #bb0037 solid;
+    background: none repeat scroll 0 0 #BB0037;
+    border: 1px solid #BB0037;
+    border-radius: 6px 6px 6px 6px;
+    float: left;
+    padding: 3px 6px 0;
+    text-align: center;
 }
-.date p{
-    font-family:"UTM Bebas Regular";
-    text-transform:uppercase;
-    font-size:14px;
-    color:#bb0037;
-    margin-bottom:3px;
+.date p {
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 3px;
+    text-transform: uppercase;
 }
 .date .year {
     color:#bb0037;
@@ -397,9 +396,9 @@ input {
     float:left;
     margin-right:5px;
 }
-.socialsute-wrapperb
-{
-    float: left;
+.socialsute-wrapperb {
+    float: right;
+    width: 516px;
 }
 .socialsute-wrappera {
     clear:both;
@@ -633,16 +632,18 @@ input {
 /*************/
 /*****link header*****/
 /*************/
-.quick-access {
-    min-height: 60px;
+.quick-access .links {
+    display: block;
+    margin-left: 45px;
+    width: 786px;
 }
-.quick-access .links {margin-left:50px;}
+
 .links li {
     float: left;
     font-weight: bold;
+    height: 79px;
     line-height: 1.3em;
-    margin-top: 27px;
-    width: 140px;
+    padding: 5px 20px 0;
 }
 .links li img {
     float: left;
