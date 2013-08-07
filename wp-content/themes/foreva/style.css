@@ -397,8 +397,8 @@ input {
     margin-right:5px;
 }
 .socialsute-wrapperb {
-    float: right;
-    width: 516px;
+ clear: both;
+ width: 100%;
 }
 .socialsute-wrappera {
     clear:both;
