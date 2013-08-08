@@ -33,8 +33,7 @@ function special_nav_class($classes, $item) {
 // Replaces the excerpt "more" text by a link
 function new_excerpt_more($more) {
     global $post;
-    //return '<a class="view-more-post btn" href="' . get_permalink($post->ID) . '"> Xem thêm</a>';
-    return '';
+    return '<a class="view-more-post btn" href="' . get_permalink($post->ID) . '"> Xem thêm</a>';
 }
 
 add_filter('excerpt_more', 'new_excerpt_more');
