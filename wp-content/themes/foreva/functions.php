@@ -257,4 +257,10 @@ function translate_archive_month($list) {
   $list = preg_replace($patterns, $replacements, $list);
 return $list; 
 }
+
+function pa_admin_area_favicon() {
+$favicon_url = get_stylesheet_directory_uri() . '/favicon.ico';
+echo '<link rel="shortcut icon" href="' . $favicon_url . '" />';
+}
+add_action('admin_head', 'pa_admin_area_favicon');
 ?>
