@@ -140,6 +140,20 @@ function tf_get_image($args = array()) {
     return $final_img;
 }
 
+function getAllPost($post_id,$cateids,$operation=">",$number_posts,$order="ASC")
+{
+    global $wpdb;
+    
+    $sql = "SELECT p.* 
+            FROM $wpdb->posts as p
+            LEFT JOIN $wpdb->term_relationships AS r ON r.object_id=p.ID
+            WHERE p.post_type='post' And p.ID ".$operation." ".$post_id." And r.term_taxonomy_id IN (".$cateids .") And p.post_status='publish'
+            Order by p.id ".$order.
+            " Limit ".$number_posts;
+    
+    return $wpdb->get_results($sql);
+}
+
 function get_other_posts() {
 
     global $post;
@@ -147,9 +161,12 @@ function get_other_posts() {
     $currentId = $post->ID;
     foreach ($categories as $cate)
         $idCates[] = $cate->cat_ID;
-
-    $posts = get_posts(array('category__and' => $idCates, 'numberposts' => 3, 'orderby' => 'id', 'order' => 'DESC'));
-    $posts2 = get_posts(array('category__and' => $idCates, 'numberposts' => 3, 'orderby' => 'id', 'order' => 'ASC'));
+    
+    $posts= getAllPost($currentId,  implode(",", $idCates),">",3,"DESC");
+    $posts2= getAllPost($currentId,  implode(",", $idCates),"<",3,"ASC");
+   
+    //$posts = get_posts(array('category__and' => $idCates,'exclude' => $currentId, 'numberposts' => 3, 'orderby' => 'id', 'order' => 'DESC'));
+    //$posts2 = get_posts(array('category__and' => $idCates,'exclude' => $currentId, 'numberposts' => 3, 'orderby' => 'id', 'order' => 'ASC'));
     if (count($posts)) {
         echo '<br/><hr class="mg-bottom-20"/><h4>Có thể bạn sẽ thích đọc tiếp:</h4>';
         echo "<ul>";
