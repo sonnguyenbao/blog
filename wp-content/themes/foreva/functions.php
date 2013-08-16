@@ -37,9 +37,9 @@ function new_excerpt_more($more) {
 }
 
 add_filter('excerpt_more', 'new_excerpt_more');
+
 //Count tags in post
-function count_tags_post($id)
-{
+function count_tags_post($id) {
     global $wpdb;
     $SQL = "SELECT count(r.object_id) 
             FROM $wpdb->term_relationships As r
@@ -47,6 +47,7 @@ function count_tags_post($id)
             WHERE r.object_id=$id  And t.taxonomy='post_tag'";
     return $wpdb->get_var($SQL);
 }
+
 //Count posts in category
 function count_post_category($input = '') {
     global $wpdb;
@@ -140,17 +141,16 @@ function tf_get_image($args = array()) {
     return $final_img;
 }
 
-function getAllPost($post_id,$cateids,$operation=">",$number_posts,$order="ASC")
-{
+function getAllPost($post_id, $cateids, $operation = ">", $number_posts, $order = "ASC") {
     global $wpdb;
-    
+
     $sql = "SELECT p.* 
             FROM $wpdb->posts as p
             LEFT JOIN $wpdb->term_relationships AS r ON r.object_id=p.ID
-            WHERE p.post_type='post' And p.ID ".$operation." ".$post_id." And r.term_taxonomy_id IN (".$cateids .") And p.post_status='publish'
-            Order by p.id ".$order.
-            " Limit ".$number_posts;
-    
+            WHERE p.post_type='post' And p.ID " . $operation . " " . $post_id . " And r.term_taxonomy_id IN (" . $cateids . ") And p.post_status='publish'
+            Order by p.id " . $order .
+            " Limit " . $number_posts;
+
     return $wpdb->get_results($sql);
 }
 
@@ -161,29 +161,18 @@ function get_other_posts() {
     $currentId = $post->ID;
     foreach ($categories as $cate)
         $idCates[] = $cate->cat_ID;
-    
-    $posts= getAllPost($currentId,  implode(",", $idCates),">",3,"DESC");
-    $posts2= getAllPost($currentId,  implode(",", $idCates),"<",3,"ASC");
-   
+
+    $posts = getAllPost($currentId, implode(",", $idCates), ">", 3, "DESC");
+    $posts2 = getAllPost($currentId, implode(",", $idCates), "<", 3, "ASC");
+    $posts = array_merge($posts,$posts2);
+
     //$posts = get_posts(array('category__and' => $idCates,'exclude' => $currentId, 'numberposts' => 3, 'orderby' => 'id', 'order' => 'DESC'));
     //$posts2 = get_posts(array('category__and' => $idCates,'exclude' => $currentId, 'numberposts' => 3, 'orderby' => 'id', 'order' => 'ASC'));
     if (count($posts)) {
         echo '<br/><hr class="mg-bottom-20"/><h4>Có thể bạn sẽ thích đọc tiếp:</h4>';
         echo "<ul>";
-        $i=0;
-        $temp= array();
-        $reverse= array_reverse($posts2);
-        for($i=0;$i<count($posts);$i++){
-            $post= $posts[$i];
-            if($post->ID!=$reverse[$i]->ID)
-                $temp[]= $reverse[$i];
-            if ($currentId != $post->ID)
+            foreach ($posts as $post) {
                 echo '<li><a href="' . get_permalink() . '" title="' . the_title("", "", false) . '">' . the_title("", "", false) . '</a></li>';
-        }
-        if(count($temp))
-            foreach($temp as $post){
-                if ($currentId != $post->ID)
-                    echo '<li><a href="' . get_permalink() . '" title="' . the_title("", "", false) . '">' . the_title("", "", false) . '</a></li>';
             }
         echo "</ul>";
         echo "<br/><hr/>";
@@ -196,7 +185,7 @@ function foreva_comment($comment, $args, $depth) {
     <li>
         <a href="#"><?php comment_author(); ?>:</a>
         <span class="data-day">(<?php echo get_comment_date('j F Y'); ?>)</span>
-    <?php comment_text(); ?>
+        <?php comment_text(); ?>
     </li>
     <?php
 }
@@ -217,45 +206,43 @@ function get_form_comment() {
     return $args_form_comment;
 }
 
-function translate_month()
-{
-    switch (date('F'))
-    {
-        case "January":   
-            echo $month = "Tháng 1";    
+function translate_month() {
+    switch (date('F')) {
+        case "January":
+            echo $month = "Tháng 1";
             break;
-        case "February":  
-            echo $month = "Tháng 2";   
+        case "February":
+            echo $month = "Tháng 2";
             break;
-        case "March":     
-            echo $month = "Tháng 3";     
+        case "March":
+            echo $month = "Tháng 3";
             break;
-        case "April":     
-            echo $month = "Tháng 4";     
+        case "April":
+            echo $month = "Tháng 4";
             break;
-        case "May":       
-            echo $month = "Tháng 5";       
+        case "May":
+            echo $month = "Tháng 5";
             break;
-        case "June":      
-            echo $month = "Tháng 6";      
+        case "June":
+            echo $month = "Tháng 6";
             break;
-        case "July":      
-            echo $month = "Tháng 7";      
+        case "July":
+            echo $month = "Tháng 7";
             break;
-        case "August":    
-            echo $month = "Tháng 8";    
+        case "August":
+            echo $month = "Tháng 8";
             break;
-        case "September": 
-            echo $month = "Tháng 9"; 
+        case "September":
+            echo $month = "Tháng 9";
             break;
-        case "October":   
-            echo $month = "Tháng 10";   
+        case "October":
+            echo $month = "Tháng 10";
             break;
-        case "November":  
-            echo $month = "Tháng 11"; 
+        case "November":
+            echo $month = "Tháng 11";
             break;
-        case "December":  
-            echo $month = "Tháng 12";  
+        case "December":
+            echo $month = "Tháng 12";
             break;
     }
 }
@@ -263,21 +250,22 @@ function translate_month()
 add_filter('get_archives_link', 'translate_archive_month');
 
 function translate_archive_month($list) {
-  $patterns = array(
-    '/January/', '/February/', '/March/', '/April/', '/May/', '/June/',
-    '/July/', '/August/', '/September/', '/October/',  '/November/', '/December/'
-  );
-  $replacements = array(
-    'Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 
-    'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'
-  );    
-  $list = preg_replace($patterns, $replacements, $list);
-return $list; 
+    $patterns = array(
+        '/January/', '/February/', '/March/', '/April/', '/May/', '/June/',
+        '/July/', '/August/', '/September/', '/October/', '/November/', '/December/'
+    );
+    $replacements = array(
+        'Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
+        'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'
+    );
+    $list = preg_replace($patterns, $replacements, $list);
+    return $list;
 }
 
 function pa_admin_area_favicon() {
-$favicon_url = get_stylesheet_directory_uri() . '/favicon.ico';
-echo '<link rel="shortcut icon" href="' . $favicon_url . '" />';
+    $favicon_url = get_stylesheet_directory_uri() . '/favicon.ico';
+    echo '<link rel="shortcut icon" href="' . $favicon_url . '" />';
 }
+
 add_action('admin_head', 'pa_admin_area_favicon');
 ?>
