@@ -12,7 +12,7 @@
     <head>
         <meta charset="<?php bloginfo('charset'); ?>" />
         <meta name="viewport" content="width=device-width" />
-        <title><?php wp_title('|', true, 'right'); ?></title>
+        <title><?php is_home() ? bloginfo('name') : wp_title('|', true, 'right'); ?></title>
         <link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" />
         <?php // Loads HTML5 JavaScript file to add support for HTML5 elements in older IE versions. ?>
         <!--[if lt IE 9]>
