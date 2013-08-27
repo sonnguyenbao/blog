@@ -14,7 +14,7 @@
         <div class="post">
             <?php
             while (have_posts()) {
-                //the_post();
+                the_post();
                 get_template_part('content', "homefirst");
             }
             ?>
