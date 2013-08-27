@@ -1,14 +1,15 @@
 <?php get_header(); ?>
-<?php $cur_cat = get_cat_ID(single_cat_title("", false));
+<?php global $wp_query;$cur_cat = get_cat_ID(single_cat_title("", false));
 ?>        
 <div id="main" class="col-left">
     <div class="page-title">
         <h1><?php single_cat_title($prefix = '', $display = true); ?> </h1>
     </div>
     <?php
-    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-    $args = array('cat=' => $cur_cat, 'paged' => $paged);
-    query_posts($args);
+//    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+//    $args = array('category__in' => $cur_cat, 'paged' => $paged);
+    query_posts('cat='.$cur_cat.'&paged='.$paged);
+//    query_posts($args);
     ?>    
     <?php if (have_posts()) : ?> 
         <div class="post">
@@ -17,6 +18,8 @@
                 the_post();
                 get_template_part('content', "homefirst");
             }
+            // Reset Query
+            wp_reset_query();
             ?>
         </div>
         <div class="btnBottom">            
