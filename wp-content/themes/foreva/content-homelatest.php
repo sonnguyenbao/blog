@@ -40,7 +40,13 @@ if (count($recent_posts)) {
                 <?php if (has_post_thumbnail()): ?>
                     <div class="atclear">
                         <a href="<?php the_permalink(); ?>">
-                            <?php the_post_thumbnail(); ?>
+                            <?php 
+                                if (has_post_thumbnail()) {
+                                    $image_src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
+                                    echo '<img src="' . $image_src[0] . '" width="100%"  />';
+                                }
+                                //the_post_thumbnail(); 
+                            ?>
                         </a>
                     </div>
                 <?php endif; ?>
