@@ -2,10 +2,12 @@
 
 /**
  * Module Name: Mobile Theme
- * Module Description: Automatically optimize your site for mobile devices.
- * Sort Order: 11
+ * Module Description: Optimize your site with a mobile-friendly theme for tablets and phones.
+ * Sort Order: 21
  * First Introduced: 1.8
  * Requires Connection: No
+ * Auto Activate: No
+ * Module Tags: Appearance, Mobile
  */
 
 function jetpack_load_minileven() {
@@ -70,7 +72,7 @@ function minileven_configuration_screen() {
 			</tr>
 		</table>
 		<p class="submit">
-			<input type="submit" class="button-primary" value="<?php esc_attr_e( __( 'Save configuration', 'jetpack' ) ); ?>" />
+			<input type="submit" class="button-primary" value="<?php esc_attr_e( 'Save configuration', 'jetpack' ); ?>" />
 		</p>
 	</form>
 	<h3><?php _e( 'Mobile Apps', 'jetpack' ); ?></h3>

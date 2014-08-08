@@ -1,4 +1,4 @@
-/* This file was automatically generated on Mar 25 2013 08:14:36 */
+/* This file was automatically generated on Jul 10 2014 07:37:31 */
 
 .slideshow-window {
 	background-color: #222;
@@ -8,6 +8,13 @@
 	-webkit-border-radius: 11px;
 	-khtml-border-radius: 11px;
 	margin-bottom: 20px;
+	height: 410px;
+	z-index: 1;
+}
+
+.slideshow-window.slideshow-white {
+	background-color: #fff;
+	border-color: #fff;
 }
 
 .slideshow-window, .slideshow-window * {
@@ -50,7 +57,7 @@ body div.slideshow-window * img {
 }
 
 .slideshow-line-height-hack {
-	overflow: hide;
+	overflow: hidden;
 	width: 0px;
 	font-size: 0px;
 }
